@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/terminal.dir/src/main_node.cpp.o  -o terminal 

@@ -1,0 +1,5 @@
+/mnt/d/Study/Labs2course/os_lab_06/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/mnt/d/Study/Labs2course/os_lab_06/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/d/Study/Labs2course/os_lab_06/cmake-build-debug/CMakeFiles/functions.dir
+/mnt/d/Study/Labs2course/os_lab_06/cmake-build-debug/CMakeFiles/terminal.dir
+/mnt/d/Study/Labs2course/os_lab_06/cmake-build-debug/CMakeFiles/child_node.dir

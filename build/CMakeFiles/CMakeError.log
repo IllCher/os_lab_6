@@ -1,0 +1,138 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_cdfe5/fast"
+/usr/bin/make -f CMakeFiles/cmTC_cdfe5.dir/build.make CMakeFiles/cmTC_cdfe5.dir/build
+make[1]: Entering directory '/mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_cdfe5.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_cdfe5.dir/CheckSymbolExists.c.o   -c /mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_cdfe5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cdfe5.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_cdfe5.dir/CheckSymbolExists.c.o  -o cmTC_cdfe5 
+CMakeFiles/cmTC_cdfe5.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_cdfe5.dir/build.make:97: recipe for target 'cmTC_cdfe5' failed
+make[1]: *** [cmTC_cdfe5] Error 1
+make[1]: Leaving directory '/mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_cdfe5/fast' failed
+make: *** [cmTC_cdfe5/fast] Error 2
+
+File /mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_d4e63/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d4e63.dir/build.make CMakeFiles/cmTC_d4e63.dir/build
+make[1]: Entering directory '/mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d4e63.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_d4e63.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_d4e63
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d4e63.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_d4e63.dir/CheckFunctionExists.c.o  -o cmTC_d4e63 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_d4e63.dir/build.make:97: recipe for target 'cmTC_d4e63' failed
+make[1]: *** [cmTC_d4e63] Error 1
+make[1]: Leaving directory '/mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_d4e63/fast' failed
+make: *** [cmTC_d4e63/fast] Error 2
+
+
+Determining if the kqueue exist failed with the following output:
+Change Dir: /mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_65ba6/fast"
+/usr/bin/make -f CMakeFiles/cmTC_65ba6.dir/build.make CMakeFiles/cmTC_65ba6.dir/build
+make[1]: Entering directory '/mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_65ba6.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -std=gnu++11 -Wno-tautological-constant-compare    -o CMakeFiles/cmTC_65ba6.dir/CheckSymbolExists.cxx.o -c /mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:2:10: fatal error: sys/event.h: No such file or directory
+ #include <sys/event.h>
+          ^~~~~~~~~~~~~
+compilation terminated.
+CMakeFiles/cmTC_65ba6.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_65ba6.dir/CheckSymbolExists.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_65ba6.dir/CheckSymbolExists.cxx.o] Error 1
+make[1]: Leaving directory '/mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_65ba6/fast' failed
+make: *** [cmTC_65ba6/fast] Error 2
+
+File /mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <sys/event.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef kqueue
+  return ((int*)(&kqueue))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if files windows.h exist failed with the following output:
+Change Dir: /mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_de6ca/fast"
+/usr/bin/make -f CMakeFiles/cmTC_de6ca.dir/build.make CMakeFiles/cmTC_de6ca.dir/build
+make[1]: Entering directory '/mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_de6ca.dir/CheckIncludeFiles.c.o
+/usr/bin/cc   -std=gnu11 -Wno-tautological-constant-compare    -o CMakeFiles/cmTC_de6ca.dir/CheckIncludeFiles.c.o   -c /mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+/mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c:2:10: fatal error: windows.h: No such file or directory
+ #include <windows.h>
+          ^~~~~~~~~~~
+compilation terminated.
+CMakeFiles/cmTC_de6ca.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_de6ca.dir/CheckIncludeFiles.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_de6ca.dir/CheckIncludeFiles.c.o] Error 1
+make[1]: Leaving directory '/mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_de6ca/fast' failed
+make: *** [cmTC_de6ca/fast] Error 2
+
+Source:
+/* */
+#include <windows.h>
+
+
+int main(void){return 0;}
+
+Determining if files condition_variable exist failed with the following output:
+Change Dir: /mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_59409/fast"
+/usr/bin/make -f CMakeFiles/cmTC_59409.dir/build.make CMakeFiles/cmTC_59409.dir/build
+make[1]: Entering directory '/mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_59409.dir/CheckIncludeFiles.c.o
+/usr/bin/cc   -std=gnu11 -Wno-tautological-constant-compare    -o CMakeFiles/cmTC_59409.dir/CheckIncludeFiles.c.o   -c /mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+/mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c:2:10: fatal error: condition_variable: No such file or directory
+ #include <condition_variable>
+          ^~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+CMakeFiles/cmTC_59409.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_59409.dir/CheckIncludeFiles.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_59409.dir/CheckIncludeFiles.c.o] Error 1
+make[1]: Leaving directory '/mnt/d/Study/Labs2course/os_lab_06/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_59409/fast' failed
+make: *** [cmTC_59409/fast] Error 2
+
+Source:
+/* */
+#include <condition_variable>
+
+
+int main(void){return 0;}
+

@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/os_lab_06.dir/main.cpp.o  -o os_lab_06 
