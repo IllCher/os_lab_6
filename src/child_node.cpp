@@ -6,6 +6,7 @@
 #include <exception>
 #include <csignal>
 #include <unordered_map>
+#include <utility>
 #include "sf.h"
 
 
@@ -14,7 +15,7 @@ int main(int argc, char** argv) { //аргументы - айди и номер 
     int id = std::stoi(argv[1]);
     int parent_id = std::stoi(argv[2]);
     int parent_port = std::stoi(argv[3]);
-
+    std::unordered_map<std::string, int> dictionary;
     zmq::context_t context(3);
     zmq::socket_t parent_socket(context, ZMQ_REP);
 
@@ -107,23 +108,22 @@ int main(int argc, char** argv) { //аргументы - айди и номер 
             }
         } else if (command == "exec") {
             int path_size;
+            int value;
+            std::string name;
             command_stream >> path_size;
             std::vector<int> path(path_size);
             for (int i = 0; i < path_size; ++i) {
                 command_stream >> path[i];
             }
-            int number_size;
-            command_stream >> number_size;
-            std::vector<int> numbers(number_size);
-            for (int i = 0; i < number_size; ++i) {
-                command_stream >> numbers[i];
-            }
+            command_stream >> name;
+            command_stream >> value;
             if (path.empty()) {
-                int sum = 0;
-                for (int i : numbers) {
-                    sum += i;
+                if (dictionary.find(name) == dictionary.end()) {
+                    dictionary.insert(std::pair<std::string, int>(name, value));
+                    send_message(parent_socket, "Ok:" + std::to_string(id) + ": " + "'" + name + "'");
+                } else {
+                    send_message(parent_socket, "Ok:" + std::to_string(id));
                 }
-                send_message(parent_socket, "Ok " + std::to_string(id) + ":" + std::to_string(sum));
             } else {
                 int next_id = path.front();
                 path.erase(path.begin());
@@ -132,10 +132,7 @@ int main(int argc, char** argv) { //аргументы - айди и номер 
                 for (int i : path) {
                     msg_stream << " " << i;
                 }
-                msg_stream << " " << number_size;
-                for (int i : numbers) {
-                    msg_stream << " " << i;
-                }
+                msg_stream << " " << name << " " << value;
                 send_message(sockets.at(next_id), msg_stream.str());
                 send_message(parent_socket, recieve_message(sockets.at(next_id)));
             }

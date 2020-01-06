@@ -1,24 +1,15 @@
-cmake_minimum_required(VERSION 3.6)
-project(os_lab_06)
+cmake_minimum_required(VERSION 3.10)
+project(os_lab_6)
 
-set(CMAKE_CXX_STANDARD 14)
-find_package(PkgConfig)
-find_path(ZeroMQ_INCLUDE_DIR
-        NAMES zmq.hpp
-        PATHS ${PC_ZeroMQ_INCLUDE_DIRS}
-        )
-find_library(ZeroMQ_LIBRARY
-        NAMES zmq
-        PATHS ${PC_ZeroMQ_LIBRARY_DIRS}
-        )
+set(CMAKE_CXX_STANDARD 17)
 
-
+add_executable(terminal main.cpp)
 add_executable(child_node child_node.cpp)
-target_include_directories(child_node PUBLIC ${ZeroMQ_INCLUDE_DIR})
-target_link_libraries(child_node PUBLIC ${ZeroMQ_LIBRARY})
+add_library(functions sf.cpp sf.h)
 
-add_executable(app main.cpp)
-target_include_directories(app PUBLIC ${ZeroMQ_INCLUDE_DIR})
-target_link_libraries(app PUBLIC ${ZeroMQ_LIBRARY})
+#target_link_libraries(test zmq)
+target_link_libraries(functions zmq)
+target_link_libraries(terminal zmq functions)
+target_link_libraries(child_node zmq functions)
 
 

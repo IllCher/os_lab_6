@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/d/Study/Labs2course/os_lab_06/src
+CMAKE_SOURCE_DIR = /mnt/d/Study/Labs2course/os_lab_6/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug
+CMAKE_BINARY_DIR = /mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/functions.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/functions.dir/flags.make
 
 CMakeFiles/functions.dir/sf.cpp.o: CMakeFiles/functions.dir/flags.make
 CMakeFiles/functions.dir/sf.cpp.o: ../sf.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/functions.dir/sf.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/functions.dir/sf.cpp.o -c /mnt/d/Study/Labs2course/os_lab_06/src/sf.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/functions.dir/sf.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/functions.dir/sf.cpp.o -c /mnt/d/Study/Labs2course/os_lab_6/src/sf.cpp
 
 CMakeFiles/functions.dir/sf.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/functions.dir/sf.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/Study/Labs2course/os_lab_06/src/sf.cpp > CMakeFiles/functions.dir/sf.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/Study/Labs2course/os_lab_6/src/sf.cpp > CMakeFiles/functions.dir/sf.cpp.i
 
 CMakeFiles/functions.dir/sf.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/functions.dir/sf.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/Study/Labs2course/os_lab_06/src/sf.cpp -o CMakeFiles/functions.dir/sf.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/Study/Labs2course/os_lab_6/src/sf.cpp -o CMakeFiles/functions.dir/sf.cpp.s
 
 CMakeFiles/functions.dir/sf.cpp.o.requires:
 
@@ -91,7 +91,7 @@ functions_EXTERNAL_OBJECTS =
 libfunctions.a: CMakeFiles/functions.dir/sf.cpp.o
 libfunctions.a: CMakeFiles/functions.dir/build.make
 libfunctions.a: CMakeFiles/functions.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libfunctions.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libfunctions.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/functions.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/functions.dir/link.txt --verbose=$(VERBOSE)
 
@@ -109,6 +109,6 @@ CMakeFiles/functions.dir/clean:
 .PHONY : CMakeFiles/functions.dir/clean
 
 CMakeFiles/functions.dir/depend:
-	cd /mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/d/Study/Labs2course/os_lab_06/src /mnt/d/Study/Labs2course/os_lab_06/src /mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug /mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug /mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug/CMakeFiles/functions.dir/DependInfo.cmake --color=$(COLOR)
+	cd /mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/d/Study/Labs2course/os_lab_6/src /mnt/d/Study/Labs2course/os_lab_6/src /mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug /mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug /mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug/CMakeFiles/functions.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/functions.dir/depend
 

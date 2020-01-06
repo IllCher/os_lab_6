@@ -6,7 +6,25 @@
 
 #IncludeRegexTransform: 
 
-/mnt/d/Study/Labs2course/os_lab_6/src/sf.cpp
+/mnt/d/Study/Labs2course/os_lab_6/src/child_node.cpp
+iostream
+-
+zmq.hpp
+/mnt/d/Study/Labs2course/os_lab_6/src/zmq.hpp
+string
+-
+sstream
+-
+zconf.h
+-
+exception
+-
+csignal
+-
+unordered_map
+-
+utility
+-
 sf.h
 /mnt/d/Study/Labs2course/os_lab_6/src/sf.h
 

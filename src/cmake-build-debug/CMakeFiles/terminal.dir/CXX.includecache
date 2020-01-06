@@ -6,7 +6,31 @@
 
 #IncludeRegexTransform: 
 
-/mnt/d/Study/Labs2course/os_lab_6/src/sf.cpp
+/mnt/d/Study/Labs2course/os_lab_6/src/main.cpp
+iostream
+-
+zmq.hpp
+/mnt/d/Study/Labs2course/os_lab_6/src/zmq.hpp
+string
+-
+zconf.h
+-
+vector
+-
+csignal
+-
+sstream
+-
+set
+-
+algorithm
+-
+memory
+-
+utility
+-
+unordered_map
+-
 sf.h
 /mnt/d/Study/Labs2course/os_lab_6/src/sf.h
 

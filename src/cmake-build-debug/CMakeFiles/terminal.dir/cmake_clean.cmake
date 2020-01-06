@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/terminal.dir/main_node.cpp.o"
+  "CMakeFiles/terminal.dir/main.cpp.o"
   "terminal.pdb"
   "terminal"
 )

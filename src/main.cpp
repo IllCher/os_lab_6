@@ -8,6 +8,7 @@
 #include <set>
 #include <algorithm>
 #include <memory>
+#include <utility>
 #include <unordered_map>
 #include "sf.h"
 
@@ -219,38 +220,29 @@ int main() {
             std::cout << recieved_message << "\n";
 
         } else if (command == "exec") {
-            int id, n;
-            std::cin >> id >> n;
+            std::string name;
+            int id, value;
             std::vector<int> path = ids.GetPathTo(id);
             if (path.empty()) {
                 std::cout << "Error: No such node" << "\n";
                 continue;
             }
             path.erase(path.begin());
-            std::vector<int> numbers(n);
-            for (int i = 0; i < n; ++i) {
-                std::cin >> numbers[i];
-            }
+            std::cin >> id >> name >> value;
             std::ostringstream msg_stream;
             msg_stream << "exec " << path.size();
-            for (int i : path) {
-                msg_stream << " " << i;
-            }
-            msg_stream << " " << n;
-            for (int i : numbers) {
-                msg_stream << " " << i;
-            }
+            msg_stream << " " << name << " " << value;
             std::string test = msg_stream.str();
             send_message(main_socket, msg_stream.str());
             std::string recieved_message = recieve_message(main_socket);
             std::cout << recieved_message << "\n";
 
-        } else if (command == "pingall") {
+        } else if (command == "ping") {
             if (child_pid == 0) {
                 std::cout << "No nodes\n";
                 continue;
             }
-            send_message(main_socket,"pingall");
+            send_message(main_socket,"ping");
             std::string recieved = recieve_message(main_socket);
             std::istringstream is(recieved);
             std::vector<int> recieved_nodes;

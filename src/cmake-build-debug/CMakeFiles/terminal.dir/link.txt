@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/terminal.dir/main_node.cpp.o  -o terminal -lzmq libfunctions.a -lzmq 
+/usr/bin/c++  -g   CMakeFiles/terminal.dir/main.cpp.o  -o terminal -lzmq libfunctions.a -lzmq 

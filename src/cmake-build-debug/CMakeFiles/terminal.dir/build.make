@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/d/Study/Labs2course/os_lab_06/src
+CMAKE_SOURCE_DIR = /mnt/d/Study/Labs2course/os_lab_6/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug
+CMAKE_BINARY_DIR = /mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/terminal.dir/depend.make
@@ -57,42 +57,42 @@ include CMakeFiles/terminal.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/terminal.dir/flags.make
 
-CMakeFiles/terminal.dir/main_node.cpp.o: CMakeFiles/terminal.dir/flags.make
-CMakeFiles/terminal.dir/main_node.cpp.o: ../main_node.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/terminal.dir/main_node.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/terminal.dir/main_node.cpp.o -c /mnt/d/Study/Labs2course/os_lab_06/src/main_node.cpp
+CMakeFiles/terminal.dir/main.cpp.o: CMakeFiles/terminal.dir/flags.make
+CMakeFiles/terminal.dir/main.cpp.o: ../main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/terminal.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/terminal.dir/main.cpp.o -c /mnt/d/Study/Labs2course/os_lab_6/src/main.cpp
 
-CMakeFiles/terminal.dir/main_node.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/terminal.dir/main_node.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/Study/Labs2course/os_lab_06/src/main_node.cpp > CMakeFiles/terminal.dir/main_node.cpp.i
+CMakeFiles/terminal.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/terminal.dir/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/Study/Labs2course/os_lab_6/src/main.cpp > CMakeFiles/terminal.dir/main.cpp.i
 
-CMakeFiles/terminal.dir/main_node.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/terminal.dir/main_node.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/Study/Labs2course/os_lab_06/src/main_node.cpp -o CMakeFiles/terminal.dir/main_node.cpp.s
+CMakeFiles/terminal.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/terminal.dir/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/Study/Labs2course/os_lab_6/src/main.cpp -o CMakeFiles/terminal.dir/main.cpp.s
 
-CMakeFiles/terminal.dir/main_node.cpp.o.requires:
+CMakeFiles/terminal.dir/main.cpp.o.requires:
 
-.PHONY : CMakeFiles/terminal.dir/main_node.cpp.o.requires
+.PHONY : CMakeFiles/terminal.dir/main.cpp.o.requires
 
-CMakeFiles/terminal.dir/main_node.cpp.o.provides: CMakeFiles/terminal.dir/main_node.cpp.o.requires
-	$(MAKE) -f CMakeFiles/terminal.dir/build.make CMakeFiles/terminal.dir/main_node.cpp.o.provides.build
-.PHONY : CMakeFiles/terminal.dir/main_node.cpp.o.provides
+CMakeFiles/terminal.dir/main.cpp.o.provides: CMakeFiles/terminal.dir/main.cpp.o.requires
+	$(MAKE) -f CMakeFiles/terminal.dir/build.make CMakeFiles/terminal.dir/main.cpp.o.provides.build
+.PHONY : CMakeFiles/terminal.dir/main.cpp.o.provides
 
-CMakeFiles/terminal.dir/main_node.cpp.o.provides.build: CMakeFiles/terminal.dir/main_node.cpp.o
+CMakeFiles/terminal.dir/main.cpp.o.provides.build: CMakeFiles/terminal.dir/main.cpp.o
 
 
 # Object files for target terminal
 terminal_OBJECTS = \
-"CMakeFiles/terminal.dir/main_node.cpp.o"
+"CMakeFiles/terminal.dir/main.cpp.o"
 
 # External object files for target terminal
 terminal_EXTERNAL_OBJECTS =
 
-terminal: CMakeFiles/terminal.dir/main_node.cpp.o
+terminal: CMakeFiles/terminal.dir/main.cpp.o
 terminal: CMakeFiles/terminal.dir/build.make
 terminal: libfunctions.a
 terminal: CMakeFiles/terminal.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable terminal"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable terminal"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/terminal.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -100,7 +100,7 @@ CMakeFiles/terminal.dir/build: terminal
 
 .PHONY : CMakeFiles/terminal.dir/build
 
-CMakeFiles/terminal.dir/requires: CMakeFiles/terminal.dir/main_node.cpp.o.requires
+CMakeFiles/terminal.dir/requires: CMakeFiles/terminal.dir/main.cpp.o.requires
 
 .PHONY : CMakeFiles/terminal.dir/requires
 
@@ -109,6 +109,6 @@ CMakeFiles/terminal.dir/clean:
 .PHONY : CMakeFiles/terminal.dir/clean
 
 CMakeFiles/terminal.dir/depend:
-	cd /mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/d/Study/Labs2course/os_lab_06/src /mnt/d/Study/Labs2course/os_lab_06/src /mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug /mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug /mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug/CMakeFiles/terminal.dir/DependInfo.cmake --color=$(COLOR)
+	cd /mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/d/Study/Labs2course/os_lab_6/src /mnt/d/Study/Labs2course/os_lab_6/src /mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug /mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug /mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug/CMakeFiles/terminal.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/terminal.dir/depend
 

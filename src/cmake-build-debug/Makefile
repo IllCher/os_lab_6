@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/d/Study/Labs2course/os_lab_06/src
+CMAKE_SOURCE_DIR = /mnt/d/Study/Labs2course/os_lab_6/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug
+CMAKE_BINARY_DIR = /mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug/CMakeFiles /mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug/CMakeFiles /mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/Study/Labs2course/os_lab_06/src/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -176,32 +176,32 @@ child_node.cpp.s:
 	$(MAKE) -f CMakeFiles/child_node.dir/build.make CMakeFiles/child_node.dir/child_node.cpp.s
 .PHONY : child_node.cpp.s
 
-main_node.o: main_node.cpp.o
+main.o: main.cpp.o
 
-.PHONY : main_node.o
+.PHONY : main.o
 
 # target to build an object file
-main_node.cpp.o:
-	$(MAKE) -f CMakeFiles/terminal.dir/build.make CMakeFiles/terminal.dir/main_node.cpp.o
-.PHONY : main_node.cpp.o
+main.cpp.o:
+	$(MAKE) -f CMakeFiles/terminal.dir/build.make CMakeFiles/terminal.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-main_node.i: main_node.cpp.i
+main.i: main.cpp.i
 
-.PHONY : main_node.i
+.PHONY : main.i
 
 # target to preprocess a source file
-main_node.cpp.i:
-	$(MAKE) -f CMakeFiles/terminal.dir/build.make CMakeFiles/terminal.dir/main_node.cpp.i
-.PHONY : main_node.cpp.i
+main.cpp.i:
+	$(MAKE) -f CMakeFiles/terminal.dir/build.make CMakeFiles/terminal.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-main_node.s: main_node.cpp.s
+main.s: main.cpp.s
 
-.PHONY : main_node.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-main_node.cpp.s:
-	$(MAKE) -f CMakeFiles/terminal.dir/build.make CMakeFiles/terminal.dir/main_node.cpp.s
-.PHONY : main_node.cpp.s
+main.cpp.s:
+	$(MAKE) -f CMakeFiles/terminal.dir/build.make CMakeFiles/terminal.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 sf.o: sf.cpp.o
 
@@ -244,9 +244,9 @@ help:
 	@echo "... child_node.o"
 	@echo "... child_node.i"
 	@echo "... child_node.s"
-	@echo "... main_node.o"
-	@echo "... main_node.i"
-	@echo "... main_node.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 	@echo "... sf.o"
 	@echo "... sf.i"
 	@echo "... sf.s"
