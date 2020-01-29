@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/child_node.dir/src/child_node.cpp.o  -o child_node -lzmq 
