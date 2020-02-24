@@ -1,265 +1,291 @@
 #include <iostream>
-#include "zmq.hpp"
+#include <chrono>
 #include <string>
-#include <zconf.h>
+#include <zmq.hpp>
 #include <vector>
 #include <csignal>
 #include <sstream>
-#include <set>
-#include <algorithm>
 #include <memory>
-#include <utility>
 #include <unordered_map>
+
 #include "sf.h"
 
-template <typename T>
-std::ostream& operator << (std::ostream& os, std::vector<T> v) {
-    for (const T& i : v) {
-        os << i << " ";
-    }
-    return os;
-}
-
 struct TreeNode {
-    TreeNode(int id, std::weak_ptr<TreeNode> parent)
-            : id_(id), parent_(parent) {}
-
-    int id_;
-    std::weak_ptr<TreeNode> parent_;
-    std::unordered_map<int, std::shared_ptr<TreeNode>> nodes_;
+    TreeNode(int id, std::weak_ptr<TreeNode> parent) : id(id), parent(parent) {};
+    int id;
+    std::weak_ptr<TreeNode> parent;
+    std::unordered_map<int, std::shared_ptr<TreeNode>> children;
+    std::unordered_map<std::string, int> dictionary;
 };
 
-class IdIndexingTree {
+class NTree {
 public:
-    IdIndexingTree() = default;
-    ~IdIndexingTree() = default;
-
-    bool Insert(int elem, int parent_id) {
-        if (root_ == nullptr) {
-            root_ = std::make_shared<TreeNode>(elem, std::weak_ptr<TreeNode>());
+    bool Insert(int nodeId, int parentId) {
+        if(root == nullptr) {
+            root = std::make_shared<TreeNode>(nodeId, std::weak_ptr<TreeNode>());
             return true;
         }
-        std::vector<int> path = GetPathTo(parent_id);
-        if (path.empty()) {
+        std::vector<int> pathToNode = PathTo(parentId);
+        if(pathToNode.empty()) {
             return false;
         }
-        path.erase(path.begin());
-        std::shared_ptr<TreeNode> node = root_;
-        for (int i : path) {
-            if (node->nodes_.count(i) == 0) {
-                throw std::logic_error("Shit happened");
-            }
-            node = node->nodes_[i];
+        pathToNode.erase(pathToNode.begin());
+        std::shared_ptr<TreeNode> temp = root;
+        for(const auto& node : pathToNode) {
+            temp = temp->children[node];
         }
-        node->nodes_[elem] = std::make_shared<TreeNode>(elem,node);
+        temp->children[nodeId] = std::make_shared<TreeNode>(nodeId, temp);
         return true;
     }
 
-    bool Erase(int elem) {
-        std::vector<int> path = GetPathTo(elem);
-        if (path.empty()) {
+    bool Remove(int nodeId) {
+        std::vector<int> pathToNode = PathTo(nodeId);
+        if(pathToNode.empty()) {
             return false;
         }
-        path.erase(path.begin());
-        std::shared_ptr<TreeNode> node = root_;
-        for (int i : path) {
-            if (node->nodes_.count(i) == 0) {
-                throw std::logic_error("Shit happened");
-            }
-            node = node->nodes_[i];
+        pathToNode.erase(pathToNode.begin());
+        std::shared_ptr<TreeNode> temp = root;
+        for(const auto& node : pathToNode) {
+            temp = temp->children[node];
         }
-        if (node->parent_.lock() == nullptr) {
-            root_ = nullptr;
-            return true;
+        if(temp->parent.lock()) {
+            temp = temp->parent.lock();
+            temp->children.erase(nodeId);
+        } else {
+            root = nullptr;
         }
-        node = node->parent_.lock();
-        node->nodes_.erase(elem);
         return true;
     }
-
-    [[nodiscard]] std::vector<int> GetPathTo(int id) const {
-        std::vector<int> v;
-        if (!SearchFunc(root_, id, v)) {
+    std::vector<int> PathTo(int id) const {
+        std::vector<int> path;
+        if(!findNode(root, id, path)) {
             return {};
+        } else {
+            return path;
         }
-        return v;
+    }
+    void add_dictionary(int id, std::string name, int value) {
+        std::vector<int> pathToNode = PathTo(id);
+        pathToNode.erase(pathToNode.begin());
+        std::shared_ptr<TreeNode> temp = root;
+        for(const auto& node : pathToNode) {
+            temp = temp->children[node];
+        }
+        temp->dictionary[name] = value;
     }
 
-    std::vector<int> GetNodes() const {
-        std::vector<int> v;
-        GetNodes(root_, v);
-        return v;
+    void find_dictionary(int id, std::string name) {
+        std::vector<int> pathToNode = PathTo(id);
+        pathToNode.erase(pathToNode.begin());
+        std::shared_ptr<TreeNode> temp = root;
+        for(const auto& node : pathToNode) {
+            temp = temp->children[node];
+        }
+        if (temp->dictionary.find(name) == temp->dictionary.end()) {
+            std::cout << "'" << name << "' not found" << std::endl;
+        } else {
+            std::cout << temp->dictionary[name] << std::endl;
+        }
     }
-
 private:
-    bool SearchFunc(std::shared_ptr<TreeNode> node, int id, std::vector<int>& v) const {
-        if (node == nullptr) {
+    bool findNode(const std::shared_ptr<TreeNode>& current, int id, std::vector<int>& path) const {
+        if(!current) {
             return false;
         }
-        if (node->id_ == id) {
-            v.push_back(node->id_);
+        if(current->id == id) {
+            path.push_back(current->id);
             return true;
         }
-        v.push_back(node->id_);
-        for (auto [child_id, child_node] : node->nodes_) {
-            if (SearchFunc(child_node, id, v)) {
+        path.push_back(current->id);
+        for(const auto& node : current->children) {
+            if(findNode(node.second, id, path)) {
                 return true;
             }
         }
-        v.pop_back();
+        path.pop_back();
         return false;
     }
-
-    void GetNodes(std::shared_ptr<TreeNode> node, std::vector<int>& v) const {
-        if (node == nullptr) {
-            return;
-        }
-        v.push_back(node->id_);
-        for (auto [child_id, child_ptr] : node->nodes_) {
-            GetNodes(child_ptr, v);
-        }
-    }
-
-    std::shared_ptr<TreeNode> root_ = nullptr;
+    std::shared_ptr<TreeNode> root = nullptr;
 };
 
-
 int main() {
-    std::string command;
-    IdIndexingTree ids;
-    size_t child_pid = 0;
-    int child_id = 0;
-    zmq::context_t context(1);
-    zmq::socket_t main_socket(context, ZMQ_REQ);
-    int linger = 0;
-    main_socket.setsockopt(ZMQ_SNDTIMEO, 2000);
-    main_socket.setsockopt(ZMQ_LINGER, &linger, sizeof(linger));
-    int port = bind_socket(main_socket);
-    while (true) {
-        std::cin >> command;
-        if (command == "create") {
-            size_t node_id, parent_id;
+    NTree calcs;
+    std::string action;
+    int childPid = 0;
+    int childId = 0;
+    zmq::context_t ctx(1);
+    zmq::socket_t handlerSocket(ctx, ZMQ_REQ);
+    handlerSocket.setsockopt(ZMQ_SNDTIMEO, 5000);
+    handlerSocket.setsockopt(ZMQ_LINGER, 5000);
+    handlerSocket.setsockopt(ZMQ_RCVTIMEO, 5000);
+    handlerSocket.setsockopt(ZMQ_REQ_CORRELATE, 1);
+    handlerSocket.setsockopt(ZMQ_REQ_RELAXED, 1);
+    int portNumber = BindSocket(handlerSocket);
+    std::cout << portNumber << std::endl;
+    while(true) {
+        std::cin >> action;
+        if(action == "create") {
+            int nodeId, parentId;
             std::string result;
-            std::cin >> node_id >> parent_id;
-            if (child_pid == 0) {
-                child_pid = fork();
-                if (child_pid == -1) {
-                    std::cout << "Unable to create first worker node\n";
-                    child_pid = 0;
-                    exit(1);
-                } else if (child_pid == 0) {
-                    create_node(node_id, parent_id, port);
+            std::cin >> nodeId >> parentId;
+            if(!childPid) {
+                childPid = fork();
+                if(childPid == -1) {
+                    std::cout << "Unable to create process" << std::endl;
+                    exit(-1);
+                } else if(childPid == 0) {
+                    CreateNode(nodeId, portNumber);
                 } else {
-                    parent_id = 0;
-                    //ids.Insert(node_id,0);
-                    child_id = node_id;
-                    send_message(main_socket,"pid");
-                    result = recieve_message(main_socket);
+                    parentId = 0;
+                    childId = nodeId;
+                    SendMessage(handlerSocket, "pid");
+                    result = ReceiveMessage(handlerSocket);
                 }
-
             } else {
-                if (!ids.GetPathTo(node_id).empty()) {
-                    std::cout << "Error: Node already exists" << "\n";
+                if(!calcs.PathTo(nodeId).empty()) {
+                    std::cout << "Error: Already exists" << std::endl;
                     continue;
                 }
-                std::vector<int> path = ids.GetPathTo(parent_id);
-                if (path.empty()) {
-                    std::cout << "Error: No parent node" << "\n";
+                std::vector<int> path = calcs.PathTo(parentId);
+                if(path.empty()) {
+                    std::cout << "Error: Parent not found" << std::endl;
                     continue;
                 }
                 path.erase(path.begin());
-                std::ostringstream msg_stream;
-                msg_stream << "create " << path.size(); //сначала путь потом ид
-                for (int i : path) {
-                    msg_stream << " " << i;
+                std::stringstream s;
+                s << "create " << path.size();
+                for(int id : path) {
+                    s << " " << id;
                 }
-                msg_stream << " " << node_id;
-                send_message(main_socket, msg_stream.str());
-                result = recieve_message(main_socket);
+                s << " " << nodeId;
+                SendMessage(handlerSocket, s.str());
+                result = ReceiveMessage(handlerSocket);
             }
 
-            if (result.substr(0,2) == "Ok") {
-                ids.Insert(node_id, parent_id);
+            if(result.substr(0, 2) == "Ok") {
+                calcs.Insert(nodeId, parentId);
             }
-            std::cout << result << "\n";
-
-        } else if (command == "remove") {
-            if (child_pid == 0) {
-                std::cout << "Error: No such node\n";
+            std::cout << result << std::endl;
+        } else if(action == "remove") {
+            if(childPid == 0) {
+                std::cout << "Error: Not found" << std::endl;
                 continue;
             }
-            size_t node_id;
-            std::cin >> node_id;
-            if (node_id == child_id) {
-                send_message(main_socket, "kill");
-                recieve_message(main_socket);
-                kill(child_pid, SIGTERM);
-                kill(child_pid, SIGKILL);
-                child_id = 0;
-                child_pid = 0;
-                std::cout << "Ok\n";
-                ids.Erase(node_id);
+            int nodeId;
+            std::cin >> nodeId;
+            if(nodeId == childId) {
+                SendMessage(handlerSocket, "kill");
+                ReceiveMessage(handlerSocket);
+                kill(childPid, SIGTERM);
+                kill(childPid, SIGKILL);
+                childId = 0;
+                childPid = 0;
+                std::cout << "Ok" << std::endl;
+                calcs.Remove(nodeId);
                 continue;
             }
-            std::vector<int> path = ids.GetPathTo(node_id);
-            if (path.empty()) {
-                std::cout << "Error: No such node" << "\n";
+            std::vector<int> path = calcs.PathTo(nodeId);
+            if(path.empty()) {
+                std::cout << "Error: Not found" << std::endl;
                 continue;
             }
             path.erase(path.begin());
-            std::ostringstream msg_stream;
-            msg_stream << "remove " << path.size() - 1;
-            for (int i : path) {
-                msg_stream << " " << i;
+            std::stringstream s;
+            s << "remove " << path.size() - 1;
+            for(int i : path) {
+                s << " " << i;
             }
-            send_message(main_socket, msg_stream.str());
-            std::string recieved_message = recieve_message(main_socket);
-            if (recieved_message.substr(0, std::min<int>(recieved_message.size(), 2)) == "Ok") {
-                ids.Erase(node_id);
+            SendMessage(handlerSocket, s.str());
+            std::string recieved = ReceiveMessage(handlerSocket);
+            if(recieved.substr(0, 2) == "Ok") {
+                calcs.Remove(nodeId);
             }
-            std::cout << recieved_message << "\n";
-
-        } else if (command == "exec") {
-            std::string name;
-            int id, value;
-            std::vector<int> path = ids.GetPathTo(id);
-            if (path.empty()) {
-                std::cout << "Error: No such node" << "\n";
+            std::cout << recieved << std::endl;
+        } else if(action == "exec") {
+            if(childPid == 0) {
+                std::cout << "Error: Not found" << std::endl;
+                continue;
+            }
+            int nodeId;
+            std::cin >> nodeId;
+            std::string name_value;
+            std::getline(std::cin, name_value);
+            std::vector<int> path = calcs.PathTo(nodeId);
+            if(path.empty()) {
+                std::cout << "Error: Not found" << std::endl;
                 continue;
             }
             path.erase(path.begin());
-            std::cin >> id >> name >> value;
-            std::ostringstream msg_stream;
-            msg_stream << "exec " << path.size();
-            msg_stream << " " << name << " " << value;
-            std::string test = msg_stream.str();
-            send_message(main_socket, msg_stream.str());
-            std::string recieved_message = recieve_message(main_socket);
-            std::cout << recieved_message << "\n";
-
-        } else if (command == "ping") {
-            if (child_pid == 0) {
-                std::cout << "No nodes\n";
+            std::stringstream s;
+            s << "exec " << path.size();
+            for(int i : path) {
+                s << " " << i;
+            }
+            std::string received;
+            if(!SendMessage(handlerSocket, s.str())) {
+                received = "Node is unavailable";
+            } else {
+                received = ReceiveMessage(handlerSocket);
+                if (received == "Node is available") {
+                    std::string name;
+                    int value;
+                    int size_arguments = name_value.size();
+                    std::stringstream ss(name_value);
+                    bool searchNeeded = true;
+                    for (int i = 1; i < size_arguments; ++i) {
+                        if (name_value[i] == ' ') {
+                            ss >> name;
+                            ss >> value;
+                            calcs.add_dictionary(nodeId, name, value);
+                            std::cout << "Ok:" << nodeId << std::endl;
+                            searchNeeded = false;
+                            break;
+                        }
+                    }
+                    if (searchNeeded) {
+                        ss >> name;
+                        std::cout << "Ok:" << nodeId << ": ";
+                        calcs.find_dictionary(nodeId, name);
+                    }
+                } else {
+                    std::cout << received << std::endl;
+                }
+            }
+        } else if(action == "ping") {
+            if(childPid == 0) {
+                std::cout << "Error: Not found" << std::endl;
                 continue;
             }
-            send_message(main_socket,"ping");
-            std::string recieved = recieve_message(main_socket);
-            std::istringstream is(recieved);
-            std::vector<int> recieved_nodes;
-            int elem;
-            while (is >> elem) {
-                recieved_nodes.push_back(elem);
+            int nodeId;
+            std::cin >> nodeId;
+            std::vector<int> path = calcs.PathTo(nodeId);
+            if(path.empty()) {
+                std::cout << "Error: Not found" << std::endl;
+                continue;
             }
-            std::sort(recieved_nodes.begin(), recieved_nodes.end());
-            std::vector<int> all_nodes = ids.GetNodes();
-            std::sort(all_nodes.begin(), all_nodes.end());
-            std::cout << "Recieved nodes " << recieved_nodes << "\n";
-            std::cout << "All nodes " << all_nodes << "\n";
-        } else if (command == "exit") {
+            path.erase(path.begin());
+            std::stringstream s;
+            s << "ping " << path.size();
+            for(int i : path) {
+                s << " " << i;
+            }
+            std::string received;
+            if(!SendMessage(handlerSocket, s.str())) {
+                received = "Node is unavailable";
+            } else {
+                received = ReceiveMessage(handlerSocket);
+            }
+            std::cout << received << std::endl;
+        } else if(action == "exit") {
+            SendMessage(handlerSocket, "kill");
+            ReceiveMessage(handlerSocket);
+            kill(childPid, SIGTERM);
+            kill(childPid, SIGKILL);
             break;
+        } else {
+            std::cout << "Unknown command" << std::endl;
         }
-
+        action.clear();
     }
-
     return 0;
 }

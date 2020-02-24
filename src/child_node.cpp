@@ -1,168 +1,167 @@
-#include <iostream>
-#include "zmq.hpp"
 #include <string>
+#include <chrono>
 #include <sstream>
-#include <zconf.h>
-#include <exception>
+#include <zmq.hpp>
 #include <csignal>
+#include <iostream>
 #include <unordered_map>
-#include <utility>
+
 #include "sf.h"
 
-
-int main(int argc, char** argv) { //аргументы - айди и номер порта, к которому нужно подключиться
-
+int main(int argc, char* argv[]) {
+    if(argc != 3) {
+        std::cerr << "Not enough parameters" << std::endl;
+        exit(-1);
+    }
     int id = std::stoi(argv[1]);
-    int parent_id = std::stoi(argv[2]);
-    int parent_port = std::stoi(argv[3]);
-    std::unordered_map<std::string, int> dictionary;
-    zmq::context_t context(3);
-    zmq::socket_t parent_socket(context, ZMQ_REP);
-
-    parent_socket.connect(get_port_name(parent_port));
-
+    int parentPort = std::stoi(argv[2]);
+    zmq::context_t ctx;
+    zmq::socket_t parentSocket(ctx, ZMQ_REP);
+    std::string portTemplate = "tcp://127.0.0.1:";
+    parentSocket.connect(portTemplate + std::to_string(parentPort));
     std::unordered_map<int, zmq::socket_t> sockets;
     std::unordered_map<int, int> pids;
     std::unordered_map<int, int> ports;
-
-    while (true) {
-        std::string request_string;
-
-        request_string = recieve_message(parent_socket);
-
-        std::istringstream command_stream(request_string);
+    while(true) {
+        std::string action = ReceiveMessage(parentSocket);
+        std::stringstream s(action);
         std::string command;
-        command_stream >> command;
-        if (command == "id") {
-            std::string parent_string = "Ok:" + std::to_string(id);
-            send_message(parent_socket, parent_string);
-        } else if (command == "pid") {
-            std::string parent_string = "Ok:" + std::to_string(getpid());
-            send_message(parent_socket, parent_string);
-        } else  if (command == "create") {
-            int size, node_id;
-            command_stream >> size;
+        s >> command;
+        if(command == "pid") {
+            std::string reply = "Ok: " + std::to_string(getpid());
+            SendMessage(parentSocket, reply);
+        } else if(command == "create") {
+            int size, nodeId;
+            s >> size;
             std::vector<int> path(size);
-            for (int i = 0; i < size; ++i) {
-                command_stream >> path[i];
+            for(int i = 0; i < size; ++i) {
+                s >> path[i];
             }
-            command_stream >> node_id;
-            if (size == 0) {
-                sockets.emplace(std::piecewise_construct,
-                                std::forward_as_tuple(node_id),
-                                std::forward_as_tuple(context, ZMQ_REQ));
-                int port = bind_socket(sockets.at(node_id));
+            s >> nodeId;
+            if(size == 0) {
+                auto socket = zmq::socket_t(ctx, ZMQ_REQ);
+                socket.setsockopt(ZMQ_SNDTIMEO, 5000);
+                socket.setsockopt(ZMQ_LINGER, 5000);
+                socket.setsockopt(ZMQ_RCVTIMEO, 5000);
+                socket.setsockopt(ZMQ_REQ_CORRELATE, 1);
+                socket.setsockopt(ZMQ_REQ_RELAXED, 1);
+                sockets.emplace(nodeId, std::move(socket));
+                int port = BindSocket(sockets.at(nodeId));
+                std::cout << port << std::endl;
                 int pid = fork();
-                if (pid == -1) {
-                    send_message(parent_socket, "Cannot fork");
-                    continue;
-                } else if (pid == 0) {
-                    create_node(node_id, id, port);
+                if(pid == -1) {
+                    SendMessage(parentSocket, "Unable to fork");
+                } else if(pid == 0) {
+                    CreateNode(nodeId, port);
                 } else {
-                    ports[node_id] = port;
-                    pids[node_id] = pid;
-                    send_message(sockets.at(node_id), "pid");
-                    send_message(parent_socket, recieve_message(sockets.at(node_id)));
+                    ports[nodeId] = port;
+                    pids[nodeId] = pid;
+                    SendMessage(sockets.at(nodeId), "pid");
+                    SendMessage(parentSocket, ReceiveMessage(sockets.at(nodeId)));
                 }
             } else {
-                int next_id = path.front();
+                int nextId = path.front();
                 path.erase(path.begin());
-                std::ostringstream msg_stream;
-                msg_stream << "create " << path.size();
-                for (int i : path) {
-                    msg_stream << " " << i;
+                std::stringstream msg;
+                msg << "create " << path.size();
+                for(int i : path) {
+                    msg << " " << i;
                 }
-                msg_stream << " " << node_id;
-                send_message(sockets.at(next_id), msg_stream.str());
-                send_message(parent_socket, recieve_message(sockets.at(next_id)));
+                msg << " " << nodeId;
+                SendMessage(sockets.at(nextId), msg.str());
+                SendMessage(parentSocket, ReceiveMessage(sockets.at(nextId)));
             }
-        } else if (command == "remove") {
-            int size, node_id;
-            command_stream >> size;
+        } else if(command == "remove") {
+            int size, nodeId;
+            s >> size;
             std::vector<int> path(size);
-            for (int i = 0; i < size; ++i) {
-                command_stream >> path[i];
+            for(int i = 0; i < size; ++i) {
+                s >> path[i];
             }
-            command_stream >> node_id;
-            if (path.empty()) {
-                send_message(sockets.at(node_id), "kill");
-                recieve_message(sockets.at(node_id));
-                kill(pids[node_id], SIGTERM);
-                kill(pids[node_id], SIGKILL);
-                pids.erase(node_id);
-                sockets.at(node_id).disconnect(get_port_name(ports[node_id]));
-                ports.erase(node_id);
-                sockets.erase(node_id);
-                send_message(parent_socket, "Ok");
+            s >> nodeId;
+            if(path.empty()) {
+                SendMessage(sockets.at(nodeId), "kill");
+                ReceiveMessage(sockets.at(nodeId));
+                kill(pids[nodeId], SIGTERM);
+                kill(pids[nodeId], SIGKILL);
+                pids.erase(nodeId);
+                sockets.at(nodeId).disconnect(portTemplate + std::to_string(ports[nodeId]));
+                ports.erase(nodeId);
+                sockets.erase(nodeId);
+                SendMessage(parentSocket, "Ok");
             } else {
-                int next_id = path.front();
+                int nextId = path.front();
                 path.erase(path.begin());
-                std::ostringstream msg_stream;
-                msg_stream << "remove " << path.size();
-                for (int i : path) {
-                    msg_stream << " " << i;
+                std::stringstream msg;
+                msg << "remove " << path.size();
+                for(int i : path) {
+                    msg << " " << i;
                 }
-                msg_stream << " " << node_id;
-                send_message(sockets.at(next_id), msg_stream.str());
-                send_message(parent_socket, recieve_message(sockets.at(next_id)));
+                msg << " " << nodeId;
+                SendMessage(sockets.at(nextId), msg.str());
+                SendMessage(parentSocket, ReceiveMessage(sockets.at(nextId)));
             }
-        } else if (command == "exec") {
-            int path_size;
-            int value;
-            std::string name;
-            command_stream >> path_size;
-            std::vector<int> path(path_size);
-            for (int i = 0; i < path_size; ++i) {
-                command_stream >> path[i];
+        } else if(command == "exec") {
+            int size;
+            s >> size;
+            std::vector<int> path(size);
+            for(int i = 0; i < size; ++i) {
+                s >> path[i];
             }
-            command_stream >> name;
-            command_stream >> value;
-            if (path.empty()) {
-                if (dictionary.find(name) == dictionary.end()) {
-                    dictionary.insert(std::pair<std::string, int>(name, value));
-                    send_message(parent_socket, "Ok:" + std::to_string(id) + ": " + "'" + name + "'");
+            if(path.empty()) {
+                SendMessage(parentSocket, "Node is available");
+            } else {
+                int nextId = path.front();
+                path.erase(path.begin());
+                std::stringstream msg;
+                msg << "exec " << path.size();
+                for(int i : path) {
+                    msg << " " << i;
+                }
+                std::string received;
+                if(!SendMessage(sockets.at(nextId), msg.str())) {
+                    received = "Node is unavailable";
                 } else {
-                    send_message(parent_socket, "Ok:" + std::to_string(id));
+                    received = ReceiveMessage(sockets.at(nextId));
                 }
+                SendMessage(parentSocket, received);
+            }
+        } else if(command == "ping") {
+            int size;
+            s >> size;
+            std::vector<int> path(size);
+            for(int i = 0; i < size; ++i) {
+                s >> path[i];
+            }
+            if(path.empty()) {
+                SendMessage(parentSocket, "Ok: 1");
             } else {
-                int next_id = path.front();
+                int nextId = path.front();
                 path.erase(path.begin());
-                std::ostringstream msg_stream;
-                msg_stream << "exec " << path.size();
-                for (int i : path) {
-                    msg_stream << " " << i;
+                std::stringstream msg;
+                msg << "ping " << path.size();
+                for(int i : path) {
+                    msg << " " << i;
                 }
-                msg_stream << " " << name << " " << value;
-                send_message(sockets.at(next_id), msg_stream.str());
-                send_message(parent_socket, recieve_message(sockets.at(next_id)));
-            }
-
-
-        } else if (command == "pingall") {
-            std::ostringstream res;
-            for (auto& [child_id, child_socket] : sockets) {
-                send_message(child_socket, "pingall");
-                std::string local_result = recieve_message(child_socket);
-                if (!local_result.empty() && local_result.substr(std::min<int>(local_result.size(),5)) != "Error") {
-                    res << local_result << " ";
+                std::string received;
+                if(!SendMessage(sockets.at(nextId), msg.str())) {
+                    received = "Node is unavailable";
+                } else {
+                    received = ReceiveMessage(sockets.at(nextId));
                 }
+                SendMessage(parentSocket, received);
             }
-            res << id << " ";
-            send_message(parent_socket, res.str());
-
-        } else if (command == "kill") {
-            for (auto& [child_id, child_socket] : sockets) {
-                send_message(child_socket, "kill");
-                recieve_message(child_socket);
-                kill(pids[child_id], SIGTERM);
-                kill(pids[child_id], SIGKILL);
-
+        } else if(command == "kill") {
+            for(auto& item : sockets) {
+                SendMessage(item.second, "kill");
+                ReceiveMessage(item.second);
+                kill(pids[item.first], SIGTERM);
+                kill(pids[item.first], SIGKILL);
             }
-            send_message(parent_socket, "Ok");
+            SendMessage(parentSocket, "Ok");
         }
-        if (parent_port == 0) {
+        if(parentPort == 0) {
             break;
         }
     }
-
 }

@@ -3,12 +3,10 @@
 #include <zconf.h>
 #include "zmq.hpp"
 
-bool send_message(zmq::socket_t& socket, const std::string& message_string);
+bool SendMessage(zmq::socket_t& socket, const std::string& message);
 
-std::string recieve_message(zmq::socket_t& socket);
+std::string ReceiveMessage(zmq::socket_t& socket);
 
-std::string get_port_name(int port);
+int BindSocket(zmq::socket_t& socket);
 
-int bind_socket(zmq::socket_t& socket);
-
-void create_node(int id, int parent_id, int port);
+void CreateNode(int id, int portNumber);
