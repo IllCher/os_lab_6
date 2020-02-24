@@ -6,15 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/mnt/d/Study/Labs2course/os_lab_6/src/sf.cpp
+/home/ilya/os_lab_6-master/src/sf.cpp
 sf.h
-/mnt/d/Study/Labs2course/os_lab_6/src/sf.h
+/home/ilya/os_lab_6-master/src/sf.h
 
-/mnt/d/Study/Labs2course/os_lab_6/src/sf.h
+/home/ilya/os_lab_6-master/src/sf.h
+iostream
+-
 string
 -
 zconf.h
 -
 zmq.hpp
-/mnt/d/Study/Labs2course/os_lab_6/src/zmq.hpp
+/home/ilya/os_lab_6-master/src/zmq.hpp
 

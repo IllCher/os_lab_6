@@ -1,4 +1,4 @@
-/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /mnt/d/Study/Labs2course/os_lab_6/src
+/opt/clion-2019.3.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/ilya/os_lab_6-master/src
 -- Configuring done
 -- Generating done
--- Build files have been written to: /mnt/d/Study/Labs2course/os_lab_6/src/cmake-build-debug
+-- Build files have been written to: /home/ilya/os_lab_6-master/src/cmake-build-debug

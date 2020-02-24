@@ -1,12 +1,13 @@
 #pragma once
+#include <iostream>
 #include <string>
 #include <zconf.h>
 #include "zmq.hpp"
 
-bool SendMessage(zmq::socket_t& socket, const std::string& message);
+bool send_msg(zmq::socket_t& socket, const std::string& message);
 
-std::string ReceiveMessage(zmq::socket_t& socket);
+std::string get_msg(zmq::socket_t& socket);
 
-int BindSocket(zmq::socket_t& socket);
+int bind_socket(zmq::socket_t& socket);
 
-void CreateNode(int id, int portNumber);
+void crt_node(int id, int portNumber);

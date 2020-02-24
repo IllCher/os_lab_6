@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/functions.dir/sf.cpp.o"
-  "libfunctions.pdb"
   "libfunctions.a"
+  "libfunctions.pdb"
 )
 
 # Per-language clean rules from dependency scanning.
