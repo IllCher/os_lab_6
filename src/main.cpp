@@ -8,19 +8,19 @@
 #include <unordered_map>
 #include "sf.h"
 
-struct TreeNode {
-    TreeNode(int id, std::weak_ptr<TreeNode> parent) : id(id), parent(parent) {};
+struct Node {
+    Node(int id, std::weak_ptr<Node> parent) : id(id), parent(parent) {};
     int id;
-    std::weak_ptr<TreeNode> parent;
-    std::unordered_map<int, std::shared_ptr<TreeNode>> children;
+    std::weak_ptr<Node> parent;
+    std::unordered_map<int, std::shared_ptr<Node>> children;
     std::unordered_map<std::string, int> dictionary;
 };
 
-class NTree {
+class General_tree {
 public:
     bool insert(int node_id, int parent_id) {
         if(root == nullptr) {
-            root = std::make_shared<TreeNode>(node_id, std::weak_ptr<TreeNode>());
+            root = std::make_shared<Node>(node_id, std::weak_ptr<Node>());
             return true;
         }
         std::vector<int> path = get_path(parent_id);
@@ -28,11 +28,11 @@ public:
             return false;
         }
         path.erase(path.begin());
-        std::shared_ptr<TreeNode> temp = root;
+        std::shared_ptr<Node> tmp = root;
         for(const auto& node : path) {
-            temp = temp->children[node];
+            tmp = tmp->children[node];
         }
-        temp->children[node_id] = std::make_shared<TreeNode>(node_id, temp);
+        tmp->children[node_id] = std::make_shared<Node>(node_id, tmp);
         return true;
     }
 
@@ -42,13 +42,13 @@ public:
             return false;
         }
         path.erase(path.begin());
-        std::shared_ptr<TreeNode> temp = root;
+        std::shared_ptr<Node> tmp = root;
         for(const auto& node : path) {
-            temp = temp->children[node];
+            tmp = tmp->children[node];
         }
-        if(temp->parent.lock()) {
-            temp = temp->parent.lock();
-            temp->children.erase(node_id);
+        if(tmp->parent.lock()) {
+            tmp = tmp->parent.lock();
+            tmp->children.erase(node_id);
         } else {
             root = nullptr;
         }
@@ -65,28 +65,28 @@ public:
     void add_dictionary(int id, std::string name, int value) {
         std::vector<int> path = get_path(id);
         path.erase(path.begin());
-        std::shared_ptr<TreeNode> temp = root;
+        std::shared_ptr<Node> tmp = root;
         for(const auto& node : path) {
-            temp = temp->children[node];
+            tmp = tmp->children[node];
         }
-        temp->dictionary[name] = value;
+        tmp->dictionary[name] = value;
     }
 
     void find_dictionary(int id, std::string name) {
         std::vector<int> path = get_path(id);
         path.erase(path.begin());
-        std::shared_ptr<TreeNode> temp = root;
+        std::shared_ptr<Node> tmp = root;
         for(const auto& node : path) {
-            temp = temp->children[node];
+            tmp = tmp->children[node];
         }
-        if (temp->dictionary.find(name) == temp->dictionary.end()) {
+        if (tmp->dictionary.find(name) == tmp->dictionary.end()) {
             std::cout << "'" << name << "' not found" << std::endl;
         } else {
-            std::cout << temp->dictionary[name] << std::endl;
+            std::cout << tmp->dictionary[name] << std::endl;
         }
     }
 private:
-    bool get_node(const std::shared_ptr<TreeNode>& current, int id, std::vector<int>& path) const {
+    bool get_node(const std::shared_ptr<Node>& current, int id, std::vector<int>& path) const {
         if(!current) {
             return false;
         }
@@ -103,11 +103,11 @@ private:
         path.pop_back();
         return false;
     }
-    std::shared_ptr<TreeNode> root = nullptr;
+    std::shared_ptr<Node> root = nullptr;
 };
 
 int main() {
-    NTree tree;
+    General_tree tree;
     std::string command;
     int child_pid = 0;
     int child_id = 0;
