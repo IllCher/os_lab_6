@@ -4,9 +4,7 @@
 #include <csignal>
 #include <iostream>
 #include <unordered_map>
-
 #include "sf.h"
-
 int main(int argc, char* argv[]) {
     if(argc != 3) {
         std::cerr << "Not enough parameters" << std::endl;
