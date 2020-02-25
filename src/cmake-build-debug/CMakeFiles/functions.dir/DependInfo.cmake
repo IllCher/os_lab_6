@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ilya/os_lab_6-master/src/sf.cpp" "/home/ilya/os_lab_6-master/src/cmake-build-debug/CMakeFiles/functions.dir/sf.cpp.o"
+  "/home/zebr/os_lab_6-master/src/sf.cpp" "/home/zebr/os_lab_6-master/src/cmake-build-debug/CMakeFiles/functions.dir/sf.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

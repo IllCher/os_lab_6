@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ilya/os_lab_6-master/src/child_node.cpp" "/home/ilya/os_lab_6-master/src/cmake-build-debug/CMakeFiles/child_node.dir/child_node.cpp.o"
+  "/home/zebr/os_lab_6-master/src/child_node.cpp" "/home/zebr/os_lab_6-master/src/cmake-build-debug/CMakeFiles/child_node.dir/child_node.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -14,7 +14,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/ilya/os_lab_6-master/src/cmake-build-debug/CMakeFiles/functions.dir/DependInfo.cmake"
+  "/home/zebr/os_lab_6-master/src/cmake-build-debug/CMakeFiles/functions.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/clion-2019.3.2/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /opt/clion-2019.2.4/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /opt/clion-2019.3.2/bin/cmake/linux/bin/cmake -E remove -f
+RM = /opt/clion-2019.2.4/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ilya/os_lab_6-master/src
+CMAKE_SOURCE_DIR = /home/zebr/os_lab_6-master/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ilya/os_lab_6-master/src/cmake-build-debug
+CMAKE_BINARY_DIR = /home/zebr/os_lab_6-master/src/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/functions.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/functions.dir/flags.make
 
 CMakeFiles/functions.dir/sf.cpp.o: CMakeFiles/functions.dir/flags.make
 CMakeFiles/functions.dir/sf.cpp.o: ../sf.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ilya/os_lab_6-master/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/functions.dir/sf.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/functions.dir/sf.cpp.o -c /home/ilya/os_lab_6-master/src/sf.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zebr/os_lab_6-master/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/functions.dir/sf.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/functions.dir/sf.cpp.o -c /home/zebr/os_lab_6-master/src/sf.cpp
 
 CMakeFiles/functions.dir/sf.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/functions.dir/sf.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ilya/os_lab_6-master/src/sf.cpp > CMakeFiles/functions.dir/sf.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zebr/os_lab_6-master/src/sf.cpp > CMakeFiles/functions.dir/sf.cpp.i
 
 CMakeFiles/functions.dir/sf.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/functions.dir/sf.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ilya/os_lab_6-master/src/sf.cpp -o CMakeFiles/functions.dir/sf.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zebr/os_lab_6-master/src/sf.cpp -o CMakeFiles/functions.dir/sf.cpp.s
 
 # Object files for target functions
 functions_OBJECTS = \
@@ -80,7 +80,7 @@ functions_EXTERNAL_OBJECTS =
 libfunctions.a: CMakeFiles/functions.dir/sf.cpp.o
 libfunctions.a: CMakeFiles/functions.dir/build.make
 libfunctions.a: CMakeFiles/functions.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ilya/os_lab_6-master/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libfunctions.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zebr/os_lab_6-master/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libfunctions.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/functions.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/functions.dir/link.txt --verbose=$(VERBOSE)
 
@@ -94,6 +94,6 @@ CMakeFiles/functions.dir/clean:
 .PHONY : CMakeFiles/functions.dir/clean
 
 CMakeFiles/functions.dir/depend:
-	cd /home/ilya/os_lab_6-master/src/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ilya/os_lab_6-master/src /home/ilya/os_lab_6-master/src /home/ilya/os_lab_6-master/src/cmake-build-debug /home/ilya/os_lab_6-master/src/cmake-build-debug /home/ilya/os_lab_6-master/src/cmake-build-debug/CMakeFiles/functions.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/zebr/os_lab_6-master/src/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zebr/os_lab_6-master/src /home/zebr/os_lab_6-master/src /home/zebr/os_lab_6-master/src/cmake-build-debug /home/zebr/os_lab_6-master/src/cmake-build-debug /home/zebr/os_lab_6-master/src/cmake-build-debug/CMakeFiles/functions.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/functions.dir/depend
 

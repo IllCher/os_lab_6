@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/ilya/os_lab_6-master/src/cmake-build-debug"/>
+				<Option working_dir="/home/zebr/os_lab_6-master/src/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/ilya/os_lab_6-master/src/cmake-build-debug"/>
+				<Option working_dir="/home/zebr/os_lab_6-master/src/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/ilya/os_lab_6-master/src/cmake-build-debug"/>
+				<Option working_dir="/home/zebr/os_lab_6-master/src/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="functions">
-				<Option output="/home/ilya/os_lab_6-master/src/cmake-build-debug/libfunctions.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ilya/os_lab_6-master/src/cmake-build-debug"/>
+				<Option output="/home/zebr/os_lab_6-master/src/cmake-build-debug/libfunctions.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/zebr/os_lab_6-master/src/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
@@ -54,15 +54,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 functions"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 functions"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="functions/fast">
-				<Option output="/home/ilya/os_lab_6-master/src/cmake-build-debug/libfunctions.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ilya/os_lab_6-master/src/cmake-build-debug"/>
+				<Option output="/home/zebr/os_lab_6-master/src/cmake-build-debug/libfunctions.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/zebr/os_lab_6-master/src/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
@@ -77,15 +77,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 functions/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 functions/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="terminal">
-				<Option output="/home/ilya/os_lab_6-master/src/cmake-build-debug/terminal" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ilya/os_lab_6-master/src/cmake-build-debug"/>
+				<Option output="/home/zebr/os_lab_6-master/src/cmake-build-debug/terminal" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/zebr/os_lab_6-master/src/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -100,15 +100,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 terminal"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 terminal"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="terminal/fast">
-				<Option output="/home/ilya/os_lab_6-master/src/cmake-build-debug/terminal" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ilya/os_lab_6-master/src/cmake-build-debug"/>
+				<Option output="/home/zebr/os_lab_6-master/src/cmake-build-debug/terminal" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/zebr/os_lab_6-master/src/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -123,15 +123,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 terminal/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 terminal/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="child_node">
-				<Option output="/home/ilya/os_lab_6-master/src/cmake-build-debug/child_node" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ilya/os_lab_6-master/src/cmake-build-debug"/>
+				<Option output="/home/zebr/os_lab_6-master/src/cmake-build-debug/child_node" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/zebr/os_lab_6-master/src/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -146,15 +146,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 child_node"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 child_node"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="child_node/fast">
-				<Option output="/home/ilya/os_lab_6-master/src/cmake-build-debug/child_node" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ilya/os_lab_6-master/src/cmake-build-debug"/>
+				<Option output="/home/zebr/os_lab_6-master/src/cmake-build-debug/child_node" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/zebr/os_lab_6-master/src/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -169,26 +169,26 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 child_node/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ilya/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 child_node/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/zebr/os_lab_6-master/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/ilya/os_lab_6-master/src/child_node.cpp">
+		<Unit filename="/home/zebr/os_lab_6-master/src/child_node.cpp">
 			<Option target="child_node"/>
 		</Unit>
-		<Unit filename="/home/ilya/os_lab_6-master/src/main.cpp">
+		<Unit filename="/home/zebr/os_lab_6-master/src/main.cpp">
 			<Option target="terminal"/>
 		</Unit>
-		<Unit filename="/home/ilya/os_lab_6-master/src/sf.cpp">
+		<Unit filename="/home/zebr/os_lab_6-master/src/sf.cpp">
 			<Option target="functions"/>
 		</Unit>
-		<Unit filename="/home/ilya/os_lab_6-master/src/sf.h">
+		<Unit filename="/home/zebr/os_lab_6-master/src/sf.h">
 			<Option target="functions"/>
 		</Unit>
-		<Unit filename="/home/ilya/os_lab_6-master/src/CMakeLists.txt">
+		<Unit filename="/home/zebr/os_lab_6-master/src/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

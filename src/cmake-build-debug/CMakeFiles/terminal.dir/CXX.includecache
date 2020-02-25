@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/ilya/os_lab_6-master/src/main.cpp
+/home/zebr/os_lab_6-master/src/main.cpp
 iostream
 -
 string
@@ -24,15 +24,15 @@ memory
 unordered_map
 -
 sf.h
-/home/ilya/os_lab_6-master/src/sf.h
+/home/zebr/os_lab_6-master/src/sf.h
 
-/home/ilya/os_lab_6-master/src/sf.h
+/home/zebr/os_lab_6-master/src/sf.h
 iostream
 -
 string
 -
-zconf.h
--
 zmq.hpp
-/home/ilya/os_lab_6-master/src/zmq.hpp
+/home/zebr/os_lab_6-master/src/zmq.hpp
+unistd.h
+/home/zebr/os_lab_6-master/src/unistd.h
 
